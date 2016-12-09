@@ -2871,7 +2871,7 @@ ul.staggered-list li {
 footer.page-footer {
   margin-top: 20px;
   padding-top: 20px;
-  background-color: #ee6e73;
+  background-color: black;
 }
 
 footer.page-footer .footer-copyright {
@@ -2879,7 +2879,7 @@ footer.page-footer .footer-copyright {
   height: 50px;
   line-height: 50px;
   color: rgba(255, 255, 255, 0.8);
-  background-color: rgba(51, 51, 51, 0.08);
+  background-color: grey;
 }
 
 table, th, td {
@@ -4014,7 +4014,7 @@ nav {
   color: #fff;
   background-color: black;
   width: 100%;
-  height: 56px;
+  height: 26px;
   line-height: 56px;
 }
 
@@ -4494,6 +4494,7 @@ small {
   font-weight: 300;
 }
 
+
 .card .card-title.activator {
   cursor: pointer;
 }
@@ -4552,7 +4553,7 @@ small {
 }
 
 .card.horizontal .card-image {
-  max-width: 50%;
+  max-width: 30%;
 }
 
 .card.horizontal .card-image img {
@@ -6014,7 +6015,7 @@ textarea.materialize-textarea + label:after {
 }
 
 .input-field label.active {
-  font-size: 0.8rem;
+  font-size: 0.2rem;
   -webkit-transform: translateY(-140%);
           transform: translateY(-140%);
 }
@@ -7629,6 +7630,7 @@ input[type=range]:focus::-ms-fill-upper {
   position: relative;
   height: 400px;
   width: 100%;
+  border: 3px solid black;
 }
 
 .slider.fullscreen {
@@ -7695,7 +7697,7 @@ input[type=range]:focus::-ms-fill-upper {
   position: absolute;
   text-align: center;
   left: 0;
-  right: 0;
+  right: 30;
   bottom: 0;
   margin: 0;
 }
@@ -7706,6 +7708,7 @@ input[type=range]:focus::-ms-fill-upper {
   cursor: pointer;
   height: 16px;
   width: 16px;
+
   margin: 0 12px;
   background-color: #e0e0e0;
   transition: background-color .3s;

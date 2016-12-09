@@ -30,11 +30,14 @@ body {
   color: #777;
   border-top: .05rem solid #e5e5e5;
 }
+.html {
+    font-family: GillSans, Arial, Trebuchet, serif;
+  }
 
 /* Customize container */
 @media (min-width: 48em) {
   .container {
-    max-width: 540rem;
+    max-width: 54000rem;
   }
 }
 .container-narrow > hr {
@@ -81,8 +84,8 @@ body {
     margin: 0px;
 
     width: 300px;
-    height: 316px;
-    border: 1px solid green;
-    padding: 0px;
+    height: 310px;
+    border: 3px solid green;
+    padding: 0.50px;
   }
 }
