@@ -136,6 +136,8 @@ class App{
   showLandingPage(){
     $('#brandLayout').show();
     $('#brandRecent').show();
+        $('#createbrand').hide();
+     $('#updateBrandShirt').hide();
     
   }
 }
@@ -170,6 +172,7 @@ class Component extends App{
         <div id="brandView"></div>
         <div id="brandList"></div>
         <div id="brandCreate"></div>
+              <div id="updateBrandShirt"></div>
 
         <footer class="page-footer">
           <div class="container">
@@ -321,8 +324,8 @@ brandRecent(){
               </div>
               <div class="card-action small">    
          
-                    <a onclick="component.updatePage()" class="waves-effect waves-light btn">Update</a>
-                <span onclick="component.deletebrand(${r.id})" class="new badge small red" data-badge-caption="">DELETE</span>
+                    <a onclick="component.updateBrandShirt(${r.id})" class="waves-effect waves-light btn">Update</a>
+                <a onclick="component.deletebrand(${r.id})" class="waves-effect waves-light btn">DELETE</a>
                 <a onclick="component.brandList()" class="waves-effect waves-light btn">BACK TO BRAND LIST</a>
 
               </div>
@@ -330,7 +333,6 @@ brandRecent(){
           </div>        
         </div>      
       </div>
-      <div id="updatePage"></div>
 
     `;
 
@@ -349,78 +351,33 @@ brandRecent(){
     $('#brandRecent').hide();
     $('#brandList').hide();
     $('#brandCreate').hide();
+     $('#updateBrandShirt').hide();
   }
 
-updateBrand(id){
-    let html = `
-      <div class="row">
-        <div class="input-field col s6">
-          <input id="brandStyle" type="text" class="validate" value="${this.brand[id].style}">          
-        </div>
-        <div class="input-field col s6">
-          <input id="brandGender" type="text" class="validate" value="${this.brand[id].gender}">
-        </div>
-      </div>
-      <a onclick="component.updateBrandNow(${id})" class="waves-effect blue waves-light btn">Update</a>
-      <hr/>
-    `;  
-    this.reRender(html,document.getElementById("updateBrand"));   
-  }
   
 
+updateBrand(id){
 
-  updatePage(){
-    let html = `
-      <h4>This is Update Page for Music!</h4>
-
-      <div id="updateBrand"></div>
-
-      <nav>
-        <div class="nav-wrapper">
-          <form>
-            <div class="input-field">
-              <input onkeyup="component.brandSearch()" id="search1" type="search" required>
-              <label for="search1"><i class="material-icons">search</i></label>
-              <i class="material-icons">close</i>
-            </div>
-          </form>
-        </div>
-      </nav>
-
-
-        <div id="searchPageBrandList"></div>
-      `;
-
-
-
-    html += `
-
-    `;
-    this.reRender(html,document.getElementById("updatePage"));
-    
-    $('#brandLayout').hide();
-    this.brandSearch();
-    
-  } 
-
-  updateBrandNow(id){
-
-    let brandDummy = {
-      "id" :  id,
-      "style" : $('#brandStyle').val(),
-      "gender" : $('#brandGender').val()
-    }
-
-    let m = this.brand;
-    for(let i=0;i<m.length;i++){
-      if(m[i].id == id){
-        m[i] = brandDummy;
-        break;
-      }
-    }
-
-    this.updatePage();
+  id = id+1;
+  let brandummy = {
+    "id" :  id,
+    "name" : $('#name_1').val(),
+    "style" : $('#style_1').val(),
+    "gender" : $('#gender_1').val(),
+    "color" : $('#color_1').val(),
+    "photo" : $('#photo_1').val()
   }
+
+  let r = this.brand;
+  for(let i=0;i<r.length;i++){
+    if(r[i].id == id){
+      r[i] = brandummy;
+      break;
+    }
+  }
+
+  this.brandList();
+}
 
   brandSearch(){
     let m = this.brand;
@@ -524,7 +481,8 @@ findBrandByID(id){
     $('#brandList').show();
     $('#brandView').hide();
     $('#brandRecent').hide();
-    $('#brandCreate').hide();    
+    $('#brandCreate').hide(); 
+     $('#updateBrandShirt').hide();   
   }
 brandListItems(name){
     let html = ``;
@@ -558,6 +516,7 @@ brandListItems(name){
     $('#brandView').hide();
     $('#brandRecent').hide();  
     $('#brandCreate').hide();
+     $('#updateBrandShirt').hide();
   }
   
    findBrandByName(name){
@@ -574,63 +533,33 @@ brandListItems(name){
   }
 
   brandCreate(){
-    let html = `<h3 class="center-align black-text text-darken-2">CREATE NEW BRAND</h3>
+    let html = `<center>
+    <div class="form-style-3">
+    <div class="row">
+      <fieldset>
+    <center><h1>Create Shirts</h1></center>
+    <center><label for="brand_id">Shirt Stocks<span><span class="required"></span></span><input disabled value="${this.brand.length+1}" id="brand_id" type="text" ></label></center>
+    <center> <span>Enter Name</span><input type="email" id="brand_name"/> </label></center>
+    <center>  <span>Enter Picture</span><input type="email" id="brand_photo"/> </label></center>
+     <center>  <span>Enter Brand</span><input type="email" id="brand_style"/> </label></center>
+    <center>  <span>Enter Gender</span><input type="email" id="brand_gender"/> </label></center>
+        <center> <span>Enter Color</span><input type="email" id="brand_color"/> </label></center>
 
 
-    <br/>
-    <br/>
+    <div class="center-align">
+    <button onclick="component.brandList()" class="btn waves-effect waves-light">Back to Brand List</button>
+    <button onclick="component.createbrand()" class="btn waves-effect waves-light">Save</button>
 
-            <div class="row">
-            <div class="input-field col s6  red darken-4">
-              <input id="brand_name" type="text" class="validate ">
-              <label for="brand_name" class="blue-grey-text-text text-darken-2">NAME</label>
-            </div>
-             </div>
-          </div>
-          <div class="row">
-            
-            <div class="input-field col s6 brown darken-1">
-              <input id="brand_style" type="text" class="validate">
+    </div>
+    </div>
 
-              <label for="brand_style" class="blue-grey-text text-darken-2">STYLE</label>
-              </div>
-            </div>
-            <div class="row">
-            <div class="input-field col s6 deep-orange darken-2">
-              <input id="brand_gender" type="text" class="validate">
-              <label for="brand_gender" class="blue-grey-text text-darken-2">GENDER</label>
-
-            </div>
-             </div>
-             <div class="row">
-            <div class="input-field col s6 deep-orange darken-2">
-              <input id="brand_color" type="text" class="validate">
-              <label for="brand_color" class="blue-grey-text text-darken-2">COLOR</label>
-            </div>
-             </div>
+</fieldset>
+    </div>
+    </center>
 
 
-
-             <div class="row">
-            <div class="input-field col s6  brown darken-1">
-              <input id="brand_photo" type="text" class="validate">
-              <label for="brand_photo" class="blue-grey-text text-darken-2">PHOTO</label>
-
-
-            </div>
-
-          </div>
-
-          <div class="row">
-        <form class="col s12">
-        
-        <button onclick="component.createbrand()" class="btn waves-effect waves-light">Save</button>
-          <div class="row">
-            <div class="input-field col s6 ">
-              <input disabled value="${this.brand.length+1}"  id="brand_id" type="text" class="black-text text-darken-3">
-            </div>
-             </div>
-             </div>
+         
+       
              
    
           
@@ -646,14 +575,14 @@ brandListItems(name){
     $('#brandList').hide();
     $('#brandView').hide();
     $('#brandRecent').hide();
+      $('#updateBrandShirt').hide();
     
   }
 
 
    createbrand(){
     let id = document.getElementById('brand_id');
-    let name = document.getElementById('brand_name');
-    
+    let name = document.getElementById('brand_name'); 
     let photo = document.getElementById('brand_photo');
     let style = document.getElementById('brand_style');
     let gender  = document.getElementById('brand_gender');
@@ -679,7 +608,57 @@ brandListItems(name){
   } 
 
   
+    updateBrandShirt(id){
+
+    id = id - 1;
+    let html = `
     
+
+
+    <center>
+    <div class="form-style-3">
+    <div class="row">
+    <fieldset>
+    <center><h1>Update Shirts</h1></center>
+    <center><span >T-Shirt Stocks<span class="required">*</span></span><input disabled value="${this.brand.length+1}" id="brand_id" type="text" ></label></center>
+    <center><span>Update Name</span><input type="email" id="name_1"value="${this.brand[id].name}"/> </label></center>
+    <center><span>Update Style</span><input type="email" id="style_1"value="${this.brand[id].style}"/> </label></center>
+    <center><span>Update Gender</span><input type="email" id="gender_1"value="${this.brand[id].gender}"/> </label></center>
+    <center><span>Update Color</span><input type="email" id="color_1"value="${this.brand[id].color}"/> </label></center>
+	<center> <span>Update Photo</span><input type="email" id="photo_1"value="${this.brand[id].photo} "/> </label></center>
+ 
+
+    <div class="center-align">
+    <button onclick="component.brandList()" class="btn waves-effect waves-light">Back</button>
+    <a onclick="component.updateBrand(${id})" class="waves-effect blue waves-light btn">Update</a>
+    </div>
+    </div>
+</fieldset>
+
+    </div>
+    </center>
+
+
+
+
+
+
+    `;  
+    this.reRender(`
+
+      ${html}
+
+      `,document.getElementById("updateBrandShirt"));   
+ $('#brandCreate').hide();
+    $('#brandList').hide();
+    $('#brandView').hide();
+    $('#brandRecent').hide();
+      $('#updateBrandShirt').show();
+    
+    
+    
+    
+  }
   
 
 
